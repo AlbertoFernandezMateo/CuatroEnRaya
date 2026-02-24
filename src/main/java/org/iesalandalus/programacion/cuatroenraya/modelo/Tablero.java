@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.cuatroenraya.modelo;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Tablero {
@@ -7,6 +8,7 @@ public class Tablero {
     public static final int FILAS = 6;
     public static final int COLUMNAS = 7;
     public static int FICHAS_IGUALES_CONSECUTIVAS_NECESARIAS = 4;
+
     private Casilla[][] Tablero;
 
     public Tablero() {
@@ -14,7 +16,7 @@ public class Tablero {
     }
 
     private boolean columnaVacia(int columna) {
-        return (Tablero[0][columna].estaOcupada());
+        return (!Tablero[0][columna].estaOcupada());
     }
 
     public boolean estaVacio() {
@@ -124,15 +126,24 @@ public class Tablero {
     }
     private boolean comprobarDiagonalNE(int filaActual, int columnaActual, Ficha ficha){
 
+
     }
     private boolean comprobarDiagonalNO(int filaActual, int columnaActual, Ficha ficha){
 
     }
 
     private boolean comprobarTirada(int fila, int columa){
+        Ficha ficha = Tablero[fila][columa].getFicha();
+        return comprobarHorizontal(fila, ficha) ||
+                comprobarVertical(fila, ficha) ||
+                comprobarDiagonalNE(fila, columa, ficha) ||
+                comprobarDiagonalNO(fila, columa, ficha);
 
     }
 
-
+    @Override
+    public String toString() {
+        return String.format("Tablero (Tablero=%s)", Arrays.toString(Tablero));
+    }
 }
 
