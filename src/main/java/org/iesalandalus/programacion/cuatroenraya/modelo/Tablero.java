@@ -127,8 +127,21 @@ public class Tablero {
     private boolean comprobarDiagonalNE(int filaActual, int columnaActual, Ficha ficha){
 
 
+
     }
     private boolean comprobarDiagonalNO(int filaActual, int columnaActual, Ficha ficha){
+        int fichasIgualesConsecutivas = 0;
+        int desplazamiento = menor(filaActual, COLUMNAS - 1 - columnaActual);
+        int filaInicial = filaActual - desplazamiento;
+        int columnaInicial = columnaActual + desplazamiento;
+        for (int fila = filaInicial, columna = columnaInicial; !objetivoAlcanzado(fichasIgualesConsecutivas) && (fila < FILAS && columna >= 0); fila ++, columna--){
+            if(Tablero[fila][columna].estaOcupada() && Tablero[fila][columna].getFicha().equals(ficha)){
+                fichasIgualesConsecutivas++;
+            }else{
+                fichasIgualesConsecutivas = 0;
+            }
+        }
+        return objetivoAlcanzado(fichasIgualesConsecutivas);
 
     }
 
